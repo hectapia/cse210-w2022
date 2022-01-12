@@ -1,3 +1,9 @@
+"""
+TicTacToe game by Hector Olivares Tapia
+CSE 210 | Programming With Classes
+Brigham Young University - Idaho
+"""
+
 grid_positions = [1,2,3,4,5,6,7,8,9]
 grid_inputs = []
 turns = ['X','O']
