@@ -1,14 +1,16 @@
 """
 TicTacToe game by Hector Olivares Tapia
+Handling Exceptions are included
 CSE 210 | Programming With Classes
 Brigham Young University - Idaho
+
 """
 
 grid_positions = [1,2,3,4,5,6,7,8,9]
 grid_inputs = []
 turns = ['X','O']
 xos = []
-grid_score = ['E0','E1','E2','E3','E4','E5','E6','E7','E8','E9']
+grid_board = ['E0','E1','E2','E3','E4','E5','E6','E7','E8','E9']
 get_winner = [0,1,2,3,4,5,6,7,8,0,4,8,0,3,6,1,4,7,2,5,8,2,4,6,0]
 
 
@@ -19,12 +21,13 @@ def main():
     xo = 0
     while turn != 9 :
         try:
-
             print(f"\033[1;37;45m {turns[xo]}'s turn to choose a square (1-9): \033[0m",end='')
             grid_posi = int(input(" "))
 
             if grid_posi in grid_inputs:
                 print('turn is already occupied')
+            elif grid_posi < 1 or grid_posi > 9:
+                print('choose a square (1-9)')
             else:
                 print()
                 print('\n\033[1;37;41m   TIC-TAC-TOE  \033[0m\n')
@@ -69,15 +72,12 @@ def position(grid_pos, v, xo):
         if k < 7 : 
             for l in range(8): print(f'\033[0;30;47m--\033[0m',end='')
         print()
-    #print(grid_inputs)
-    #print(xos)
-    #print()
     signal = verify_winner(signal)
     return signal
 
 def verify_winner(signal):
     for i in range(len(grid_inputs)):
-        grid_score[grid_inputs[i]-1] = xos[i]
+        grid_board[grid_inputs[i]-1] = xos[i]
     
     i = 0
     j = 0
@@ -85,31 +85,22 @@ def verify_winner(signal):
     l = 0
     while i <= 23:
         while j <= 2:
-            #print(f'{i}', end='-')
-            #print(f'{j}', end=' ')
-            if grid_score[get_winner[i]] == 'X': #grid_score[get_winner[i+1]]:
+            if grid_board[get_winner[i]] == 'X':
                 k += 1
-                #print(f'_{k}_', end='')
                 if k == 3 : 
                     print('\033[1;30;47m  <<<<<< Y O U   W I N >>>>>>  \033[0m\n')
                     signal = 1  
-            if grid_score[get_winner[i]] == 'O': #grid_score[get_winner[i+1]]:
+            if grid_board[get_winner[i]] == 'O': 
                 l += 1
-                #print(f'_{l}_', end='')
                 if l == 3 : 
                     print('\033[1;30;47m  <<<<<< Y O U   W I N >>>>>>  \033[0m\n') 
                     signal = 1  
             j +=1
             i +=1
-        #print('+', end='')
+
         j = 0
         k = 0
         l = 0
-
-    #print()
-    #print(grid_score)
-    #print()   
-
     return signal
 
 if __name__ == "__main__":
