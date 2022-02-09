@@ -29,5 +29,5 @@ root                    (project root folder)
 * Scott Burton (burtons@byui.edu)
 
 # ######################################################################
-# Chages added by Hector Olivares Tapia as result of cse210 assignment #
+# Chages added by Hector Olivares Tapia as result of cse210 assignment.#
 # ######################################################################
